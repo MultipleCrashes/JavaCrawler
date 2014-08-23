@@ -29,6 +29,7 @@ public class JavaCrawler {
     /**
      * @param args the command line arguments
      */
+    
     public void startCrawler() throws IOException {
         URL url;
         SeedUrl seedObj = new SeedUrl();
