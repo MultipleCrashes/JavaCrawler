@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 public class CrawlerLogger {
     public void logger(String args[]) throws IOException
     {
-        
+        Logger logger=Logger.getLogger("Crawler Logger");
     }
     
 }
