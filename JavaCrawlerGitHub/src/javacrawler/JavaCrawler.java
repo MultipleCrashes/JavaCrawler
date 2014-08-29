@@ -32,12 +32,15 @@ public class JavaCrawler {
     
     public void startCrawler() throws IOException {
         URL url;
+        long totalNumberOfCrawledUrl=0;
         SeedUrl seedObj = new SeedUrl();
         ArrayList<String> urlList = seedObj.getSeedUrl();
-        
+        // For each URL in the url List iterating and getting the html and 
+        // parsing each line to find a url  
         for (String urls :urlList) {
             try {
                 url = new URL(urls);
+                long totalLinksFromEachSite=0;
                 PatternMatcher objOfPatternMatcher = new PatternMatcher();
                 System.out.println(url);
                 String inputLine;
@@ -58,12 +61,17 @@ public class JavaCrawler {
                 BufferedWriter bw = new BufferedWriter(fw);
 
                 while ((inputLine = bfr.readLine()) != null) {
-                    bw.write(inputLine);            
-                    objOfPatternMatcher.ifUrl(inputLine);
+                    bw.write(inputLine);     
+                    totalLinksFromEachSite+=objOfPatternMatcher.ifUrl(inputLine);
+                    totalNumberOfCrawledUrl+=objOfPatternMatcher.ifUrl(inputLine);
                     // Uncomment to print the complete HTML System.out.println(inputLine);
-                }
+                    
+                } // parsing of html file ends
+                System.out.println("Total number of crawled URL for "+urls+"website is "+totalLinksFromEachSite);
+                
                 bw.close();
                 bfr.close();
+                System.out.println("Total number of crawled URL is "+totalNumberOfCrawledUrl);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
