@@ -14,7 +14,7 @@ public class WhatToDo {
     
 }
 
-
+// get top 100 visited sites from alexa into seedUrl 
 // check network connectivity 
 //segregate class 
 // Build the interface

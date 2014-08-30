@@ -21,6 +21,10 @@ public class SeedUrl {
        seedUrlList.add("http://www.mashable.com");
        seedUrlList.add("http://www.flipkart.com");
        seedUrlList.add("http://www.amazon.com");
+       seedUrlList.add("http://www.youtube.com");
+       seedUrlList.add("http://www.linkedin.com");
+       seedUrlList.add("http://www.facebook.com");
+       seedUrlList.add("http://www.redtube.com");
        return seedUrlList;
     }    
 }
