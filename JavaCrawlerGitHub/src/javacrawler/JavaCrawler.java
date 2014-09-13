@@ -58,7 +58,8 @@ public class JavaCrawler {
                 String workingDir=System.getProperty("user.dir");
                 System.out.println("Current Working Directorys is");
                 System.out.println(workingDir);
-                String fileName = workingDir+"crawledFile.txt";
+                String fileName = workingDir+"/src/com/crawler/crawledFile.txt";
+                System.out.println(fileName);
                 BufferedReader bfr = new BufferedReader(new InputStreamReader(connObj.getInputStream()));
                 File file = new File(fileName);
                 if (!file.exists()) {

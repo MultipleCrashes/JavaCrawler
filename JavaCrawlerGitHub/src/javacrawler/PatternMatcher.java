@@ -52,7 +52,7 @@ public class PatternMatcher {
                     {
                         endIndex = completeUrl.length();
                     }
-                    File crawledFile = new File("/home/crawledFileList.crawledUrl");
+                    
                     //System.out.println(firstIndex);
                     //System.out.println(secondIndex);
                     //System.out.println(endIndex);
@@ -62,16 +62,7 @@ public class PatternMatcher {
                     extractedUrl = completeUrl.substring(0, endIndex);
                     hs.add(extractedUrl);
                     //System.out.println(hs);
-                    if (!crawledFile.exists()) {
-                        crawledFile.createNewFile();
-                    }
-                    FileWriter fw = new FileWriter(crawledFile.getAbsoluteFile(), true);
-
-                    // True will append the data to file instead of overwriting
-                    BufferedWriter bw = new BufferedWriter(fw);
-                    bw.write(completeUrl);
-                    bw.write("\n");
-                    bw.close();
+                    
                    //System.out.println(baseUrl);
 
                 }
