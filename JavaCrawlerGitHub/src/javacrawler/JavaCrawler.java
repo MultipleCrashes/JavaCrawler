@@ -5,21 +5,24 @@
  */
 package javacrawler;
 
-import javacrawler.PatternMatcher;
-
+import com.fileio.crawler.WriteToFile;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.HashSet;
+import javacrawler.PatternMatcher;
 
 /**
  *
@@ -52,7 +55,10 @@ public class JavaCrawler {
                 URLConnection connObj = url.openConnection();
 
                 // Open a stream and put the contents in the stream
-                String fileName = "/home/crawledFile.html";
+                String workingDir=System.getProperty("user.dir");
+                System.out.println("Current Working Directorys is");
+                System.out.println(workingDir);
+                String fileName = workingDir+"crawledFile.txt";
                 BufferedReader bfr = new BufferedReader(new InputStreamReader(connObj.getInputStream()));
                 File file = new File(fileName);
                 if (!file.exists()) {
@@ -60,7 +66,7 @@ public class JavaCrawler {
                     file.createNewFile();
                 }
                 // Using file writer to write to a file
-
+                //FileWriter fw=new FileWriter(file.getCanonicalFile())
                 FileWriter fw = new FileWriter(file.getAbsoluteFile());
                 BufferedWriter bw = new BufferedWriter(fw);
                 previousCountOfUrl=hsReturned.size();
@@ -75,7 +81,8 @@ public class JavaCrawler {
                     
                 } // parsing of html file ends
                 System.out.println(hsReturned);
-                
+                WriteToFile writeToFileObj=new WriteToFile();
+                writeToFileObj.writeHashSetToFile(hsReturned);
                 totalLinksFromEachSite=hsReturned.size()-previousCountOfUrl;
                 System.out.println("Total number of crawled URL for " + urls + "website is " + totalLinksFromEachSite);
                 
@@ -92,7 +99,16 @@ public class JavaCrawler {
     } // function ends
 
     public static void main(String[] args) throws IOException {
-
+//        String result="";
+//        Properties prop=new Properties();
+//        String propFileName="config.properties";
+//        InputStream inputStream;
+//        inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+//        prop.load(inputStream);
+//        if(inputStream==null)
+//        {
+//            throw new FileNotFoundException("Property file not found.Please add the config.properties file");
+//        }
         JavaCrawler crawlerObj = new JavaCrawler();
         crawlerObj.startCrawler();
 
